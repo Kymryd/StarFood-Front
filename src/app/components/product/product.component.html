@@ -1,7 +1,15 @@
 <div class="container">
-  <h3 class="h3">Burgers</h3>
+  <nav aria-label="breadcrumb" style="margin-bottom: 40px">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Burgers</li>
+    </ol>
+  </nav>
+
+  <h4 class="h4" style="text-align: center">Burgers</h4>
+  <hr><br>
   <div class="row">
-    <div class="col-md-3 col-sm-6" *ngFor="let product of products">
+    <div class="col-lg-3" *ngFor="let product of products" style="margin-bottom: 20px">
       <div class="product-grid6">
         <div class="product-image6">
           <a href="#">
