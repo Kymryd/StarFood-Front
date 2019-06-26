@@ -1,29 +1,81 @@
 <div class="container">
-  <nav aria-label="breadcrumb" style="margin-bottom: 40px">
+ <!-- <nav aria-label="breadcrumb" style="margin-bottom: 40px">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
       <li class="breadcrumb-item active" aria-current="page">Burgers</li>
     </ol>
-  </nav>
+  </nav>-->
 
-  <h4 class="h4" style="text-align: center; font-family: 'Comic Sans MS',serif">Burgers</h4>
+  <h4 class="h4" style="text-align: center; font-family: 'Comic Sans MS',serif">Products</h4>
   <hr><br>
   <div class="row">
     <div class="col-lg-3" *ngFor="let product of products" style="margin-bottom: 20px">
-      <div class="product-grid6">
+      <div class="product-grid6" *ngIf="product.productTypeId==1">
         <div class="product-image6">
-          <a href="#">
-            <img class="pic-1" src="../../../assets/images/products/burgers/burger-{{product.productId}}.jpg" alt="burger-{{product.productId}}" width="225" height="225">
-          </a>
+            <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="burger-{{product.productId}}" width="225" height="225">
         </div>
         <div class="product-content">
           <h3 class="title"><a href="#">Burger {{product.productId}}</a></h3>
           <div class="price">{{product.productPrice}}€</div>
         </div>
         <ul class="social">
-          <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+          <li><a data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal" style="cursor: pointer;"><i class="fa fa-search"></i></a></li>
+          <li><a data-tip="Add to Cart"><i class="fa fa-shopping-cart" style="cursor: pointer;"></i></a></li>
+        </ul>
+      </div>
+
+
+      <div class="product-grid6" *ngIf="product.productTypeId==2">
+        <div class="product-image6">
+            <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="side-{{product.productId}}" width="225" height="225">
+        </div>
+        <div class="product-content">
+          <h3 class="title"><a href="#">Side {{product.productId}}</a></h3>
+          <div class="price">{{product.productPrice}}€</div>
+        </div>
+        <ul class="social">
+          <li><a data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal" style="cursor: pointer;"><i class="fa fa-search"></i></a></li>
           <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
+      </div>
+
+      <div class="product-grid6" *ngIf="product.productTypeId==3">
+        <div class="product-image6">
+            <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="drink-{{product.productId}}" width="225" height="225">
+        </div>
+        <div class="product-content">
+          <h3 class="title"><a href="#">Drink {{product.productId}}</a></h3>
+          <div class="price">{{product.productPrice}}€</div>
+        </div>
+        <ul class="social">
+          <li><a data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal" style="cursor: pointer;"><i class="fa fa-search" ></i></a></li>
+          <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+        </ul>
+      </div>
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">{{selectedProduct.productTypeId}} {{selectedProduct.productId}}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              Product longDescription
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

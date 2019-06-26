@@ -13,6 +13,7 @@ import {ProductService} from './product.service';
 export class ProductComponent implements OnInit {
 
   products: Product[];
+  selectedProduct: Product = new Product();
 
   constructor(private router: Router, private productService: ProductService) { }
 
@@ -21,6 +22,10 @@ export class ProductComponent implements OnInit {
         .subscribe( data => {
           this.products = data;
         });
+    }
+
+    getSelectedProduct(product: Product) {
+      this.selectedProduct = product;
     }
   }
 
