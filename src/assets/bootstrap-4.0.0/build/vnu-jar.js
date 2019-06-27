@@ -37,9 +37,9 @@ childProcess.exec('java -version', (error, stdout, stderr) => {
     // Documentation does not rely on them being usable.
     'The “date” input type is not supported in all browsers.*',
     'The “time” input type is not supported in all browsers.*',
-    // IE11 doesn't recognise <main> / give the element an implicit "main" landmark.
-    // Explicit role="main" is redundant for other modern browsers, but still valid.
-    'The “main” role is unnecessary for element “main”.',
+    // IE11 doesn't recognise <category> / give the element an implicit "category" landmark.
+    // Explicit role="category" is redundant for other modern browsers, but still valid.
+    'The “category” role is unnecessary for element “category”.',
     // For some reason, the validator thinks the dashboard example is written in Danish
     'This document appears to be written in Danish.*'
   ].join('|')

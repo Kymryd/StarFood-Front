@@ -9,6 +9,8 @@ import { NavComponent } from './components/nav/nav.component';
 import {ProductService} from './components/product/product.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CategoryComponent } from './components/category/category.component';
+import { CategoryService} from './components/category/category.service';
 
 
 
@@ -16,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     ProductComponent,
-    NavComponent
+    NavComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     AngularFontAwesomeModule
   ],
-  providers: [ProductService],
+  providers: [CategoryService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

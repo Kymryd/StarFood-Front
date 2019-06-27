@@ -20,3 +20,20 @@
 .product-grid6 .social li a:after{content:'';height:15px;width:15px;border-radius:0;transform:translateX(-50%) rotate(45deg);top:-20px;z-index:-1}
 .product-grid6 .social li a:hover:after,.product-grid6 .social li a:hover:before{opacity:1}
 //@media only screen and (max-width:990px){.product-grid6{margin-bottom:30px}
+
+.h4{
+  text-align: center;
+  font-family: 'Comic Sans MS',serif;
+}
+
+#bottomMargin {
+  margin-bottom: 20px;
+}
+
+.pointerHand{
+  cursor: pointer;
+}
+
+.row{
+  margin-top: 100px;
+}
