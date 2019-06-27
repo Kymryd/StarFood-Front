@@ -6,7 +6,7 @@ import {ProductService} from './product.service';
 
 
 @Component({
-  selector: 'app-product.component',
+  selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })

@@ -1,0 +1,18 @@
+<div class="container">
+  <h4 class="h4" style="text-align: center; font-family: 'Comic Sans MS',serif">Main</h4>
+  <hr><br>
+  <div class="row" style="margin-top: 100px">
+    <div class="col-lg-4" *ngFor="let category of categories" style="margin-bottom: 20px">
+      <div class="category-grid6">
+        <div class="category-image6" style="margin: 0 40px 0 40px">
+          <a (click)="getSelectedCategory(category)" routerLink="/products" >
+            <img class="pic-1" src="../../../assets/images/categories/{{category.categoryId}}.png" alt="category {{category.categoryId}}">
+          </a>
+        </div>
+        <div class="category-content">
+          <h3 class="title"><a>Category {{category.categoryId}}</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

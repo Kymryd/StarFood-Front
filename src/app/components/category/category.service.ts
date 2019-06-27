@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Product } from '../../models/product.model';
+import { Category } from '../../models/category.model';
 
 
 const httpOptions = {
@@ -8,14 +8,14 @@ const httpOptions = {
 };
 
 @Injectable()
-export class ProductService {
+export class CategoryService {
 
   constructor(private http: HttpClient) {
   }
 
-  private productUrl = 'http://localhost:8080/starfood/products';
+  private categorytUrl = 'http://localhost:8080/starfood/categories';
 
-  public getProducts() {
-    return this.http.get<Product[]>(this.productUrl);
+  public getCategories() {
+    return this.http.get<Category[]>(this.categorytUrl);
   }
 }
