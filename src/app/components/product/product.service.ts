@@ -13,9 +13,13 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  private userUrl = 'http://localhost:8080/starfood/products';
+  private productUrl = 'http://localhost:8080/starfood/products';
 
   public getProducts() {
-    return this.http.get<Product[]>(this.userUrl);
+    return this.http.get<Product[]>(this.productUrl);
+  }
+
+  public getProductsByCategory(id) {
+    return this.http.get<Product[]>(this.productUrl + '/ByCategory/' + id);
   }
 }
