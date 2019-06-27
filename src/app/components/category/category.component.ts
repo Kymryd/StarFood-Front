@@ -27,4 +27,8 @@ export class CategoryComponent implements OnInit {
   getSelectedCategory(category: Category) {
     this.selectedCategory = category;
   }
+
+  getProductsByCategory(categoryId: number) {
+    this.router.navigate(['products/byCategory/', categoryId]);
+  }
 }
