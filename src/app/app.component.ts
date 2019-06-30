@@ -11,8 +11,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'StarFood-Front';
-  content = '<app-category></app-category>';
+  title = 'StarFood';
 }
 
 

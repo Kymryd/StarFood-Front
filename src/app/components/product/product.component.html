@@ -1,9 +1,9 @@
 <div class="container">
- <!-- <nav aria-label="breadcrumb" style="margin-bottom: 40px">
+<!--  <nav aria-label="breadcrumb" style="margin-bottom: 40px">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Burgers</li>
-    </ol>
+  <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Burgers</li>
+</ol>
   </nav>-->
 
   <h4 class="h4">Products</h4>
@@ -39,6 +39,7 @@
         </ul>
       </div>
 
+
       <div class="product-grid6" *ngIf="product.productTypeId==3">
         <div class="product-image6">
             <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="drink-{{product.productId}}" width="225" height="225">
@@ -52,6 +53,7 @@
           <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
+
 
       <!-- The Modal -->
       <div class="modal fade" id="myModal">

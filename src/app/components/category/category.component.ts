@@ -13,7 +13,7 @@ import {CategoryService} from './category.service';
 export class CategoryComponent implements OnInit {
 
   categories: Category[];
-  selectedCategory: Category = new Category();
+  // selectedCategory: Category = new Category();
 
   constructor(private router: Router, private categoryService: CategoryService) { }
 
@@ -22,10 +22,6 @@ export class CategoryComponent implements OnInit {
       .subscribe( data => {
         this.categories = data;
       });
-  }
-
-  getSelectedCategory(category: Category) {
-    this.selectedCategory = category;
   }
 
   getProductsByCategory(categoryId: number) {

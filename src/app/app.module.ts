@@ -11,7 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryService} from './components/category/category.service';
-
+import { MenuComponent } from './components/menu/menu.component';
+import {MenuService} from './components/menu/menu.service';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CategoryService} from './components/category/category.service';
     AppComponent,
     ProductComponent,
     NavComponent,
-    CategoryComponent
+    CategoryComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import { CategoryService} from './components/category/category.service';
     ReactiveFormsModule,
     AngularFontAwesomeModule
   ],
-  providers: [CategoryService, ProductService],
+  providers: [CategoryService, ProductService, MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
