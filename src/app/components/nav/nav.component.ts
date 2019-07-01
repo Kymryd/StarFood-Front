@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   @Output() onReset: EventEmitter<boolean>;
   @Output() goToCategories: EventEmitter<boolean>;
 
-  constructor(ecommerceComponent: EcommerceComponent) {
+  constructor() {
     this.reset = false;
     this.onReset = new EventEmitter<boolean>();
     this.goToCategories = new EventEmitter<boolean>();

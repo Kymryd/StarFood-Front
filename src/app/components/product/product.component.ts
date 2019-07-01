@@ -19,9 +19,12 @@ export class ProductComponent implements OnInit {
   private shoppingCartOrders: ProductOrders;
   sub: Subscription;
   productSelected = false;
+  selectedProduct: Product = new Product();
+
 
   @Input()
   selectedCategory: number;
+
 
   constructor(private ecommerceService: EcommerceService) {
   }
@@ -34,9 +37,11 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(order: ProductOrder) {
+    order.quantity = 1;
     this.ecommerceService.SelectedProductOrder = order;
     this.selectedProductOrder = this.ecommerceService.SelectedProductOrder;
     this.productSelected = true;
+
   }
 
   removeFromCart(productOrder: ProductOrder) {
@@ -100,5 +105,9 @@ export class ProductComponent implements OnInit {
     this.ecommerceService.ProductOrders.productOrders = [];
     this.loadOrders();
     // this.productSelected = false;
+  }
+
+  getSelectedProduct(product: Product) {
+    this.selectedProduct = product;
   }
 }

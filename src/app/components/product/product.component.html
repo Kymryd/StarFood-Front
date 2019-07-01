@@ -1,59 +1,23 @@
 <div class="container">
-<!--  <nav aria-label="breadcrumb" style="margin-bottom: 40px">
-    <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
-  <li class="breadcrumb-item active" aria-current="page">Burgers</li>
-</ol>
-  </nav>-->
 
   <h4 class="h4">Products</h4>
   <hr><br>
   <div class="row">
-    <div class="col-lg-3" id="bottomMargin" *ngFor="let product of products">
-      <div class="product-grid6" *ngIf="product.productTypeId==1">
+    <div class="col-lg-3" id="bottomMargin" *ngFor="let order of productOrders">
+      <div class="product-grid6" *ngIf="order.product.productTypeId==1">
         <div class="product-image6">
-            <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="burger-{{product.productId}}">
+          <img class="pic-1" src="../../../assets/images/products/{{order.product.productId}}.png" alt="burger-{{order.product.productId}}">
         </div>
         <div class="product-content">
-          <h3 class="title"><a href="#">Burger {{product.productId}}</a></h3>
-          <div class="price">{{product.productPrice}}€</div>
+          <h3 class="title"><a href="#">Burger {{order.product.productId}}</a></h3>
+          <div class="price">{{order.product.productPrice}}€</div>
         </div>
         <ul class="social">
-          <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(order.product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
+          <li><a class="pointerHand" data-tip="Add to Cart" (click)="addToCart(order)"><i class="fa fa-shopping-cart"></i></a></li>
+
         </ul>
       </div>
-
-
-      <div class="product-grid6" *ngIf="product.productTypeId==2">
-        <div class="product-image6">
-            <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="side-{{product.productId}}">
-        </div>
-        <div class="product-content">
-          <h3 class="title"><a href="#">Side {{product.productId}}</a></h3>
-          <div class="price">{{product.productPrice}}€</div>
-        </div>
-        <ul class="social">
-          <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-      </div>
-
-
-      <div class="product-grid6" *ngIf="product.productTypeId==3">
-        <div class="product-image6">
-            <img class="pic-1" src="../../../assets/images/products/{{product.productId}}.png" alt="drink-{{product.productId}}" width="225" height="225">
-        </div>
-        <div class="product-content">
-          <h3 class="title"><a href="#">Drink {{product.productId}}</a></h3>
-          <div class="price">{{product.productPrice}}€</div>
-        </div>
-        <ul class="social">
-          <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search" ></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-      </div>
-
 
       <!-- The Modal -->
       <div class="modal fade" id="myModal">
@@ -79,36 +43,3 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>-->
-
-<div class="row card-deck">
-  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let order of productOrders">
-    <div class="card text-center">
-      <div class="card-header">
-        <h4>{{order.product.productId}}</h4>
-      </div>
-      <div class="card-body">
-        <a href="#"><img class="card-img-top" src="../../../assets/images/products/{{order.product.productId}}.png" alt=""></a>
-        <h5 class="card-title">${{order.product.productPrice}}</h5>
-        <div class="row">
-          <div class="col-4 padding-0" *ngIf="!isProductSelected(order.product)">
-            <input type="number" min="0" class="form-control" [(ngModel)]=order.quantity>
-          </div>
-          <div class="col-4 padding-0" *ngIf="!isProductSelected(order.product)">
-            <button class="btn btn-primary" (click)="addToCart(order)"
-                    [disabled]="order.quantity <= 0">Add To Cart
-            </button>
-          </div>
-          <div class="col-12" *ngIf="isProductSelected(order.product)">
-            <button class="btn btn-primary btn-block"
-                    (click)="removeFromCart(order)">Remove From Cart
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
