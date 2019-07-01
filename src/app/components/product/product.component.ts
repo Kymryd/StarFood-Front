@@ -23,10 +23,12 @@ export class ProductComponent implements OnInit {
   selectedProduct: Product = new Product();
   lang = 1;
   productLangs: ProductLang[];
+  productsByProductType: Product[];
 
 
   @Input()
   selectedCategory: number;
+
 
 
   constructor(private ecommerceService: EcommerceService) {
@@ -128,6 +130,13 @@ export class ProductComponent implements OnInit {
     this.ecommerceService.getAllProductsLang()
       .subscribe(data => {
         this.productLangs = data;
+      });
+  }
+
+  private loadProductsByTypeId(typeId: number) {
+    this.ecommerceService.getProductsByType(typeId)
+      .subscribe(data => {
+        this.productsByProductType = data;
       });
   }
 }

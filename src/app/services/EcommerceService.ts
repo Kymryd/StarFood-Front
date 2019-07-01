@@ -70,4 +70,8 @@ export class EcommerceService {
   getAllProductsLang() {
     return this.http.get<ProductLang[]>(this.productLangUrl);
   }
+
+  getProductsByType(typeId: number) {
+    return this.http.get<Product[]>(this.productLangUrl + '/ByTypeId/' + typeId);
+  }
 }
