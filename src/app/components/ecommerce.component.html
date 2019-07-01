@@ -1,5 +1,5 @@
 <app-nav (onReset)=reset() (goToCategories)=showCategories($event)></app-nav>
-<div class="row">
+<div class="row" style="margin-top: 100px">
   <div class="col-md-9">
     <app-category (onCategorySelected)=selectCategory($event) #categoryC [hidden]="!displayCategories"></app-category>
     <app-product #productsC [hidden]="orderFinished || displayCategories"></app-product>

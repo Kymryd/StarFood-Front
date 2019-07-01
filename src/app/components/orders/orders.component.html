@@ -1,13 +1,27 @@
-<h2 class="text-center">ORDER</h2>
-<ul>
-    <li *ngFor="let order of orders.productOrders">
-        {{ order.product.name }} - ${{ order.product.price }} x {{ order.quantity}} pcs.
-    </li>
-</ul>
-<h3 class="text-right">Total amount: ${{ total }}</h3>
+<div class="container" style="margin-top: 100px">
+  <div class="row">
+    <div class="col-lg-12" id="header">
+      <h2 class="text-center">ORDER</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 justify-content-lg-start" id="content">
+        <ul>
+          <li *ngFor="let order of orders.productOrders">
+            <h4>{{ order.product.productId }} x {{ order.quantity}} pcs. - {{ order.product.productPrice }}€</h4>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 justify-content-center" id="footer">
+      <h3 class="text-right">Total amount: {{ total }}€</h3>
 
-<button class="btn btn-primary btn-block" (click)="pay()" *ngIf="!paid">Pay</button>
+      <button class="btn btn-primary btn-block" (click)="pay()" *ngIf="!paid">Pay</button>
 
-<div class="alert alert-success" role="alert" *ngIf="paid">
-    <strong>Congratulation!</strong> You successfully made the order.
+      <div class="alert alert-success" role="alert" *ngIf="paid">
+        <strong>Congratulation!</strong> You successfully made the order.
+      </div>
+    </div>
+  </div>
 </div>

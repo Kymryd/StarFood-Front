@@ -7,10 +7,10 @@ import {MenuComponent} from './components/menu/menu.component';
 
 
 const routes: Routes = [
-  { path: 'products', component: ProductComponent },
+/*  { path: 'products', component: ProductComponent },
   { path: 'products/byCategory/:id', component: ProductComponent},
   { path: 'categories', component: CategoryComponent },
-  { path: 'menus', component: MenuComponent },
+  { path: 'menus', component: MenuComponent },*/
 
 ];
 

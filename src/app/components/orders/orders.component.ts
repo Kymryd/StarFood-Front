@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs/internal/Subscription";
+import {Subscription} from 'rxjs/internal/Subscription';
 import {ProductOrders} from '../../models/product-orders.model';
 import {EcommerceService} from '../../services/EcommerceService';
 
@@ -7,7 +7,7 @@ import {EcommerceService} from '../../services/EcommerceService';
 @Component({
     selector: 'app-orders',
     templateUrl: './orders.component.html',
-    styleUrls: ['./orders.component.css']
+    styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
     orders: ProductOrders;
@@ -16,7 +16,7 @@ export class OrdersComponent implements OnInit {
     sub: Subscription;
 
     constructor(private ecommerceService: EcommerceService) {
-        this.orders = this.ecommerceService.ProductOrders;
+      this.orders = this.ecommerceService.ProductOrders;
     }
 
     ngOnInit() {

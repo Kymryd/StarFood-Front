@@ -13,7 +13,7 @@ export class EcommerceComponent implements OnInit {
     private collapsed = true;
     orderFinished = false;
     displayCategories = true;
-  selectedCategory: number;
+    selectedCategory: number;
 
     @ViewChild('categoryC')
     categoryC: CategoryComponent;
@@ -44,6 +44,7 @@ export class EcommerceComponent implements OnInit {
     selectCategory(categoryId: number) {
       this.displayCategories = false;
       this.productsC.selectedCategory = categoryId;
+      this.productsC.ngOnInit();
     }
 
     reset() {

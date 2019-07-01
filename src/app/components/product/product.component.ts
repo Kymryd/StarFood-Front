@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
 
   @Input()
   selectedCategory: number;
+  selectedType: number;
 
 
   constructor(private ecommerceService: EcommerceService) {
@@ -32,7 +33,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.productOrders = [];
     // this.loadProducts();
-    this.loadProductsbyCategory(1);
+    this.loadProductsbyCategory(this.selectedCategory);
     this.loadOrders();
   }
 
@@ -41,11 +42,10 @@ export class ProductComponent implements OnInit {
     this.ecommerceService.SelectedProductOrder = order;
     this.selectedProductOrder = this.ecommerceService.SelectedProductOrder;
     this.productSelected = true;
-
   }
 
   removeFromCart(productOrder: ProductOrder) {
-    let index = this.getProductIndex(productOrder.product);
+    const index = this.getProductIndex(productOrder.product);
     if (index > -1) {
       this.shoppingCartOrders.productOrders.splice(
         this.getProductIndex(productOrder.product), 1);
@@ -71,14 +71,14 @@ export class ProductComponent implements OnInit {
           this.products = products;
           this.products.forEach(product => {
             this.productOrders.push(new ProductOrder(product, 0));
-          })
+          });
         },
         (error) => console.log(error)
       );
   }
 
   loadProductsbyCategory(id) {
-    if(id) {
+    if (id) {
       this.ecommerceService.getProductsByCategory(id)
         .subscribe(
           (products: any[]) => {
@@ -93,6 +93,7 @@ export class ProductComponent implements OnInit {
       this.loadProducts();
     }
   }
+
   loadOrders() {
     this.sub = this.ecommerceService.OrdersChanged.subscribe(() => {
       this.shoppingCartOrders = this.ecommerceService.ProductOrders;

@@ -20,3 +20,8 @@
 .category-grid6 .social li a:after{content:'';height:15px;width:15px;border-radius:0;transform:translateX(-50%) rotate(45deg);top:-20px;z-index:-1}
 .category-grid6 .social li a:hover:after,.category-grid6 .social li a:hover:before{opacity:1}
 //@media only screen and (max-width:990px){.category-grid6{margin-bottom:30px}
+
+
+.pointerHand{
+  cursor: pointer;
+}

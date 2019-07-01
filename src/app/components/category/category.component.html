@@ -1,28 +1,17 @@
-<div class="container">
+<div class="container" style="margin-top: 100px">
   <h4 class="h4" style="text-align: center; font-family: 'Comic Sans MS',serif">Main</h4>
   <hr><br>
-  <div class="row" style="margin-top: 100px">
+  <div class="row">
     <div class="col-lg-4" *ngFor="let category of categories" style="margin-bottom: 20px">
-        <div class="category-grid6" *ngIf="category.categoryId==1">
-          <div class="category-image6" style="margin: 0 40px 0 40px">
-            <a routerLink="/menus" >
+      <div class="category-grid6 pointerHand">
+          <div class="category-image6 pointerHand" style="margin: 0 40px 0 40px">
+            <a (click)="getProductsByCategory(category.categoryId)">
               <img class="pic-1" src="../../../assets/images/categories/{{category.categoryId}}.png" alt="category {{category.categoryId}}">
             </a>
           </div>
           <div class="category-content">
             <h3 class="title"><a>Category {{category.categoryId}}</a></h3>
           </div>
-        </div>
-
-      <div class="category-grid6" *ngIf="category.categoryId>1">
-        <div class="category-image6" style="margin: 0 40px 0 40px">
-          <a (click)="getProductsByCategory(category.categoryId)" >
-            <img class="pic-1" src="../../../assets/images/categories/{{category.categoryId}}.png" alt="category {{category.categoryId}}">
-          </a>
-        </div>
-        <div class="category-content">
-          <h3 class="title"><a>Category {{category.categoryId}}</a></h3>
-        </div>
       </div>
     </div>
   </div>

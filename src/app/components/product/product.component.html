@@ -1,26 +1,69 @@
-<div class="container">
+<div class="container" style="margin-top: 100px">
 
-  <h4 class="h4">Products</h4>
+  <!--  <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="">Category</a></li>
+      <li class="breadcrumb-item active">{{selectedProduct.productTypeId}}</li>
+    </ul>-->
+
+  <h4 class="h4">Category {{selectedCategory}}</h4>
   <hr><br>
   <div class="row">
     <div class="col-lg-3" id="bottomMargin" *ngFor="let order of productOrders">
-      <div class="product-grid6" *ngIf="order.product.productTypeId==1">
+      <div class="product-grid6">
         <div class="product-image6">
-          <img class="pic-1" src="../../../assets/images/products/{{order.product.productId}}.png" alt="burger-{{order.product.productId}}">
+          <img class="pic-1" src="../../../assets/images/products/{{order.product.productId}}.png" alt="{{order.product.productId}}">
         </div>
         <div class="product-content">
-          <h3 class="title"><a href="#">Burger {{order.product.productId}}</a></h3>
+          <h3 class="title"><a>Product {{order.product.productId}}</a></h3>
           <div class="price">{{order.product.productPrice}}€</div>
         </div>
         <ul class="social">
-          <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(order.product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart" (click)="addToCart(order)"><i class="fa fa-shopping-cart"></i></a></li>
-
+          <li *ngIf="order.product.productTypeId!=9"><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(order.product)" data-toggle="modal" data-target="#myModalOthers"><i class="fa fa-search"></i></a></li>
+          <li *ngIf="order.product.productTypeId!=9"><a class="pointerHand" data-tip="Add to Cart" (click)="addToCart(order)"><i class="fa fa-shopping-cart"></i></a></li>
+          <li *ngIf="order.product.productTypeId==9"><a class="pointerHand" data-tip="Add to cart" (click)="getSelectedProduct(order.product)" data-toggle="modal" data-target="#myModalMenus"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
 
-      <!-- The Modal -->
-      <div class="modal fade" id="myModal">
+      <!-- The Modal Menus -->
+      <div class="modal fade" id="myModalMenus">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Menu {{selectedProduct.productTypeId}}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <h3>Choose your side</h3>
+              <div class="form-check-inline">
+                <label class="form-check-label" *ngIf="order.product.productTypeId==2">
+                  <input type="radio" class="form-check-input" name="optradio" required="">
+                  <img class="pic-1" src="../../../assets/images/products/{{order.product.productId}}.png" alt="side-{{order.product.productId}}" width="100px" height="100px">
+                </label>
+              </div>
+              <hr>
+              <h3>Choose your drink</h3>
+              <div class="form-check-inline">
+                <label class="form-check-label" *ngIf="order.product.productTypeId==3">
+                  <input type="radio" class="form-check-input" name="optradio2" required="">
+                  <img class="pic-1" src="../../../assets/images/products/{{order.product.productId}}.png" alt="drink-{{order.product.productId}}" width="100px" height="100px">
+                </label>
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="addToCart(order)">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Modal Others Products-->
+      <div class="modal fade" id="myModalOthers">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
 
@@ -43,3 +86,6 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
