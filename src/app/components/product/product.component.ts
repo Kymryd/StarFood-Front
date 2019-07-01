@@ -5,6 +5,7 @@ import {ProductOrder} from '../../models/product-order.model';
 import {Product} from '../../models/product.model';
 import {ProductOrders} from '../../models/product-orders.model';
 import {EcommerceService} from '../../services/EcommerceService';
+import {ProductLang} from '../../models/product-lang.model';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class ProductComponent implements OnInit {
   sub: Subscription;
   productSelected = false;
   selectedProduct: Product = new Product();
+  lang = 1;
+  productLangs: ProductLang[];
 
 
   @Input()
@@ -32,8 +35,10 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.productOrders = [];
     // this.loadProducts();
-    this.loadProductsbyCategory(1);
+    this.loadProductsbyCategory(this.selectedCategory);
     this.loadOrders();
+    // this.loadProductsLang();
+
   }
 
   addToCart(order: ProductOrder) {
@@ -42,6 +47,14 @@ export class ProductComponent implements OnInit {
     this.selectedProductOrder = this.ecommerceService.SelectedProductOrder;
     this.productSelected = true;
 
+  }
+
+  getProductLangShtDescByProductId(productId: number, ) {
+    for (let pdtLang of this.productLangs) {
+      if (productId === pdtLang.productId && this.lang === pdtLang.langId) {
+        return pdtLang.productLangShortDescription;
+      }
+    }
   }
 
   removeFromCart(productOrder: ProductOrder) {
@@ -109,5 +122,12 @@ export class ProductComponent implements OnInit {
 
   getSelectedProduct(product: Product) {
     this.selectedProduct = product;
+  }
+
+  private loadProductsLang() {
+    this.ecommerceService.getAllProductsLang()
+      .subscribe(data => {
+        this.productLangs = data;
+      });
   }
 }

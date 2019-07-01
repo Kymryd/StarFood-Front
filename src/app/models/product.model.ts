@@ -1,3 +1,5 @@
+import {ProductLang} from './product-lang.model';
+
 export class Product {
 
   productId: number;
@@ -6,5 +8,6 @@ export class Product {
   statusId: number;
   categoryId: number;
   productTypeId: number;
+  productLangsByProductId: ProductLang[];
 
 }

@@ -9,7 +9,7 @@
           <img class="pic-1" src="../../../assets/images/products/{{order.product.productId}}.png" alt="burger-{{order.product.productId}}">
         </div>
         <div class="product-content">
-          <h3 class="title"><a href="#">Burger {{order.product.productId}}</a></h3>
+          <h3 class="title"><a href="#">Burger {{order.product.productLangsByProductId[0].productLangShortDescription}}</a></h3>
           <div class="price">{{order.product.productPrice}}€</div>
         </div>
         <ul class="social">
@@ -26,7 +26,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">{{selectedProduct.productTypeId}} {{selectedProduct.productId}}</h4>
+              <h4 class="modal-title"> {{selectedProduct.productTypeId}} {{selectedProduct.productId}} - {{order.product.productLangsByProductId[0].productLangShortDescription}} </h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -43,3 +43,5 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
