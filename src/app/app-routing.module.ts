@@ -5,10 +5,12 @@ import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 
 
+
 const routes: Routes = [
   { path: 'products', component: ProductComponent },
   { path: 'products/byCategory/:id', component: ProductComponent},
   { path: 'categories', component: CategoryComponent },
+
 ];
 
 @NgModule({

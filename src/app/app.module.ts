@@ -1,17 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AngularFontAwesomeModule} from 'angular-font-awesome';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProductComponent } from './components/product/product.component';
-import { NavComponent } from './components/nav/nav.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+
+import {NavComponent} from './components/nav/nav.component';
 import {ProductService} from './components/product/product.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CategoryComponent } from './components/category/category.component';
-import { CategoryService} from './components/category/category.service';
-
+import {CategoryComponent} from './components/category/category.component';
+import {CategoryService} from './components/category/category.service';
+import {EcommerceService} from './services/EcommerceService';
+import {ProductComponent} from './components/product/product.component';
+import {OrdersComponent} from './components/orders/orders.component';
+import {ShoppingCartComponent} from './components/shopping-cart/shopping-cart.component';
+import {EcommerceComponent} from './components/ecommerce.component';
 
 
 @NgModule({
@@ -19,7 +23,10 @@ import { CategoryService} from './components/category/category.service';
     AppComponent,
     ProductComponent,
     NavComponent,
-    CategoryComponent
+    CategoryComponent,
+    OrdersComponent,
+    ShoppingCartComponent,
+    EcommerceComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,8 @@ import { CategoryService} from './components/category/category.service';
     ReactiveFormsModule,
     AngularFontAwesomeModule
   ],
-  providers: [CategoryService, ProductService],
+  providers: [CategoryService, ProductService, EcommerceService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

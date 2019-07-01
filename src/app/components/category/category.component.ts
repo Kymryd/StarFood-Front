@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 import {Category} from '../../models/category.model';
@@ -14,8 +14,14 @@ export class CategoryComponent implements OnInit {
 
   categories: Category[];
   selectedCategory: Category = new Category();
+  categorySelected: number;
 
-  constructor(private router: Router, private categoryService: CategoryService) { }
+  @Output() onCategorySelected: EventEmitter<number>;
+  
+  constructor(private router: Router, private categoryService: CategoryService) {
+
+    this.onCategorySelected = new EventEmitter<number>();
+  }
 
   ngOnInit() {
     this.categoryService.getCategories()
@@ -23,12 +29,14 @@ export class CategoryComponent implements OnInit {
         this.categories = data;
       });
   }
-
+  
   getSelectedCategory(category: Category) {
     this.selectedCategory = category;
   }
 
   getProductsByCategory(categoryId: number) {
-    this.router.navigate(['products/byCategory/', categoryId]);
+    this.categorySelected = categoryId;
+    this.onCategorySelected.emit(categoryId);
+    // this.router.navigate(['products/byCategory/', categoryId]);
   }
 }

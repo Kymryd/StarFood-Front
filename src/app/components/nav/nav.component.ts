@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AppComponent} from '../../app.component';
+import {EcommerceComponent} from '../ecommerce.component';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   title = 'StarFood';
-  constructor() { }
+  reset: boolean;
+
+  @Output() onReset: EventEmitter<boolean>;
+  @Output() goToCategories: EventEmitter<boolean>;
+
+  constructor(ecommerceComponent: EcommerceComponent) {
+    this.reset = false;
+    this.onReset = new EventEmitter<boolean>();
+    this.goToCategories = new EventEmitter<boolean>();
+  }
 
   ngOnInit() {
   }
 
+  hitReset() {
+    this.reset = true;
+    this.onReset.emit(this.reset);
+    // this.router.navigate(['products/byCategory/', categoryId]);
+  }
+
+  showCategories() {
+    this.goToCategories.emit(true);
+  }
 }

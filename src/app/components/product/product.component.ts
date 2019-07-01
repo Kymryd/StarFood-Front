@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
 
-import { Product } from '../../models/product.model';
-import {ProductService} from './product.service';
+import {Subscription} from 'rxjs/internal/Subscription';
+import {ProductOrder} from '../../models/product-order.model';
+import {Product} from '../../models/product.model';
+import {ProductOrders} from '../../models/product-orders.model';
+import {EcommerceService} from '../../services/EcommerceService';
+
 
 @Component({
   selector: 'app-product',
@@ -10,40 +13,92 @@ import {ProductService} from './product.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+  productOrders: ProductOrder[] = [];
+  products: Product[] = [];
+  selectedProductOrder: ProductOrder;
+  private shoppingCartOrders: ProductOrders;
+  sub: Subscription;
+  productSelected = false;
 
-  products: Product[];
-  selectedProduct: Product = new Product();
+  @Input()
+  selectedCategory: number;
 
-  // routage par catégorie :
-  id: number;
-  private sub: any;
-
-  constructor(private router: Router, private productService: ProductService, private route: ActivatedRoute) { }
-
-    ngOnInit() {
-
-    // lecture du param passé dans l'url (besoin d'implémenter ActivatedRoute)
-      this.sub = this.route.params.subscribe(params => {
-        this.id = +this.route.snapshot.paramMap.get('id');
-      });
-      // fin de la lecture du param passé dans l'url
-
-      // si un param est passé au composant alors on filtre par catégorie
-      if (this.id > 0) {
-        this.productService.getProductsByCategory(this.id)
-          .subscribe( data => {
-            this.products = data;
-          });
-      } else {
-        this.productService.getProducts()
-          .subscribe(data => {
-            this.products = data;
-          });
-      }
+  constructor(private ecommerceService: EcommerceService) {
   }
 
-  getSelectedProduct(product: Product) {
-    this.selectedProduct = product;
+  ngOnInit() {
+    this.productOrders = [];
+    // this.loadProducts();
+    this.loadProductsbyCategory(1);
+    this.loadOrders();
+  }
+
+  addToCart(order: ProductOrder) {
+    this.ecommerceService.SelectedProductOrder = order;
+    this.selectedProductOrder = this.ecommerceService.SelectedProductOrder;
+    this.productSelected = true;
+  }
+
+  removeFromCart(productOrder: ProductOrder) {
+    let index = this.getProductIndex(productOrder.product);
+    if (index > -1) {
+      this.shoppingCartOrders.productOrders.splice(
+        this.getProductIndex(productOrder.product), 1);
+    }
+    this.ecommerceService.ProductOrders = this.shoppingCartOrders;
+    this.shoppingCartOrders = this.ecommerceService.ProductOrders;
+    this.productSelected = false;
+  }
+
+  getProductIndex(product: Product): number {
+    return this.ecommerceService.ProductOrders.productOrders.findIndex(
+      value => value.product === product);
+  }
+
+  isProductSelected(product: Product): boolean {
+    return this.getProductIndex(product) > -1;
+  }
+
+  loadProducts() {
+    this.ecommerceService.getAllProducts()
+      .subscribe(
+        (products: any[]) => {
+          this.products = products;
+          this.products.forEach(product => {
+            this.productOrders.push(new ProductOrder(product, 0));
+          })
+        },
+        (error) => console.log(error)
+      );
+  }
+
+  loadProductsbyCategory(id) {
+    if(id) {
+      this.ecommerceService.getProductsByCategory(id)
+        .subscribe(
+          (products: any[]) => {
+            this.products = products;
+            this.products.forEach(product => {
+              this.productOrders.push(new ProductOrder(product, 0));
+            });
+          },
+          (error) => console.log(error)
+        );
+    } else {
+      this.loadProducts();
+    }
+  }
+  loadOrders() {
+    this.sub = this.ecommerceService.OrdersChanged.subscribe(() => {
+      this.shoppingCartOrders = this.ecommerceService.ProductOrders;
+    });
+  }
+
+  reset() {
+    this.productOrders = [];
+    this.loadProducts();
+    this.ecommerceService.ProductOrders.productOrders = [];
+    this.loadOrders();
+    // this.productSelected = false;
   }
 }
-

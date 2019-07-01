@@ -1,10 +1,10 @@
-<div class="container">
- <!-- <nav aria-label="breadcrumb" style="margin-bottom: 40px">
+<!--<div class="container">
+ &lt;!&ndash; <nav aria-label="breadcrumb" style="margin-bottom: 40px">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
       <li class="breadcrumb-item active" aria-current="page">Burgers</li>
     </ol>
-  </nav>-->
+  </nav>&ndash;&gt;
 
   <h4 class="h4">Products</h4>
   <hr><br>
@@ -20,7 +20,7 @@
         </div>
         <ul class="social">
           <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" data-tip="Add to Cart" (click)="addToCart(product.productId)" ><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
 
@@ -35,7 +35,7 @@
         </div>
         <ul class="social">
           <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" href="" data-tip="Add to Cart" [routerLink]="['/cart', { id:product.productId }]"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
 
@@ -49,27 +49,27 @@
         </div>
         <ul class="social">
           <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search" ></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" data-tip="Add to Cart" [routerLink]="['/cart', { id:product.productId }]"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
 
-      <!-- The Modal -->
+      &lt;!&ndash; The Modal &ndash;&gt;
       <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
 
-            <!-- Modal Header -->
+            &lt;!&ndash; Modal Header &ndash;&gt;
             <div class="modal-header">
               <h4 class="modal-title">{{selectedProduct.productTypeId}} {{selectedProduct.productId}}</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <!-- Modal body -->
+            &lt;!&ndash; Modal body &ndash;&gt;
             <div class="modal-body">
               Product longDescription
             </div>
 
-            <!-- Modal footer -->
+            &lt;!&ndash; Modal footer &ndash;&gt;
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
@@ -79,4 +79,34 @@
       </div>
     </div>
   </div>
+</div>-->
+
+<div class="row card-deck">
+  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let order of productOrders">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4>{{order.product.productId}}</h4>
+      </div>
+      <div class="card-body">
+        <a href="#"><img class="card-img-top" src="../../../assets/images/products/{{order.product.productId}}.png" alt=""></a>
+        <h5 class="card-title">${{order.product.productPrice}}</h5>
+        <div class="row">
+          <div class="col-4 padding-0" *ngIf="!isProductSelected(order.product)">
+            <input type="number" min="0" class="form-control" [(ngModel)]=order.quantity>
+          </div>
+          <div class="col-4 padding-0" *ngIf="!isProductSelected(order.product)">
+            <button class="btn btn-primary" (click)="addToCart(order)"
+                    [disabled]="order.quantity <= 0">Add To Cart
+            </button>
+          </div>
+          <div class="col-12" *ngIf="isProductSelected(order.product)">
+            <button class="btn btn-primary btn-block"
+                    (click)="removeFromCart(order)">Remove From Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
