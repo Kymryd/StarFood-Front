@@ -17,7 +17,7 @@ export class CategoryComponent implements OnInit {
   categorySelected: number;
 
   @Output() onCategorySelected: EventEmitter<number>;
-  
+
   constructor(private router: Router, private categoryService: CategoryService) {
 
     this.onCategorySelected = new EventEmitter<number>();
@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
         this.categories = data;
       });
   }
-  
+
   getSelectedCategory(category: Category) {
     this.selectedCategory = category;
   }

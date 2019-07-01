@@ -1,10 +1,10 @@
-<!--<div class="container">
- &lt;!&ndash; <nav aria-label="breadcrumb" style="margin-bottom: 40px">
+<div class="container">
+<!--  <nav aria-label="breadcrumb" style="margin-bottom: 40px">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Burgers</li>
-    </ol>
-  </nav>&ndash;&gt;
+  <li class="breadcrumb-item"><a routerLink="/products">Products</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Burgers</li>
+</ol>
+  </nav>-->
 
   <h4 class="h4">Products</h4>
   <hr><br>
@@ -20,7 +20,7 @@
         </div>
         <ul class="social">
           <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart" (click)="addToCart(product.productId)" ><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
 
@@ -35,9 +35,10 @@
         </div>
         <ul class="social">
           <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
-          <li><a class="pointerHand" href="" data-tip="Add to Cart" [routerLink]="['/cart', { id:product.productId }]"><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
+
 
       <div class="product-grid6" *ngIf="product.productTypeId==3">
         <div class="product-image6">
@@ -49,27 +50,28 @@
         </div>
         <ul class="social">
           <li><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search" ></i></a></li>
-          <li><a class="pointerHand" data-tip="Add to Cart" [routerLink]="['/cart', { id:product.productId }]"><i class="fa fa-shopping-cart"></i></a></li>
+          <li><a class="pointerHand" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
       </div>
 
-      &lt;!&ndash; The Modal &ndash;&gt;
+
+      <!-- The Modal -->
       <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
 
-            &lt;!&ndash; Modal Header &ndash;&gt;
+            <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">{{selectedProduct.productTypeId}} {{selectedProduct.productId}}</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            &lt;!&ndash; Modal body &ndash;&gt;
+            <!-- Modal body -->
             <div class="modal-body">
               Product longDescription
             </div>
 
-            &lt;!&ndash; Modal footer &ndash;&gt;
+            <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>

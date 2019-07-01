@@ -1,13 +1,17 @@
-import {Component} from '@angular/core';
-import {EcommerceService} from './services/EcommerceService';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [EcommerceService]
+  templateUrl: '<div class="container-fluid">' +
+                  '<div class="col-md-offset-1">' +
+                      '<app-nav></app-nav>' +
+                      '<router-outlet></router-outlet>' +
+                  '</div>' +
+                '</div>',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  title = 'StarFood';
 }
+
+

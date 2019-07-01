@@ -16,6 +16,8 @@ import {ProductComponent} from './components/product/product.component';
 import {OrdersComponent} from './components/orders/orders.component';
 import {ShoppingCartComponent} from './components/shopping-cart/shopping-cart.component';
 import {EcommerceComponent} from './components/ecommerce.component';
+import { MenuComponent } from './components/menu/menu.component';
+import {MenuService} from './components/menu/menu.service';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {EcommerceComponent} from './components/ecommerce.component';
     ProductComponent,
     NavComponent,
     CategoryComponent,
+    MenuComponent,
     OrdersComponent,
     ShoppingCartComponent,
     EcommerceComponent
@@ -36,7 +39,7 @@ import {EcommerceComponent} from './components/ecommerce.component';
     ReactiveFormsModule,
     AngularFontAwesomeModule
   ],
-  providers: [CategoryService, ProductService, EcommerceService],
+  providers: [CategoryService, ProductService, MenuService, EcommerceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
