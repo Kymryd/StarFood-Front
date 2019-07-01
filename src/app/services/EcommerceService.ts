@@ -4,10 +4,12 @@ import {Injectable} from '@angular/core';
 import {ProductOrder} from '../models/product-order.model';
 import {ProductOrders} from '../models/product-orders.model';
 import {Product} from '../models/product.model';
+import {ProductLang} from '../models/product-lang.model';
 
 @Injectable()
 export class EcommerceService {
     private productUrl = 'http://localhost:8080/starfood/products';
+    private productLangUrl = 'http://localhost:8080/starfood/productLangs';
     private ordersUrl = 'http://localhost:8080/starfood/orders';
 
     private productOrder: ProductOrder;
@@ -64,4 +66,12 @@ export class EcommerceService {
         this.total = value;
         this.totalSubject.next();
     }
+
+  getAllProductsLang() {
+    return this.http.get<ProductLang[]>(this.productLangUrl);
+  }
+
+  getProductsByType(typeId: number) {
+    return this.http.get<Product[]>(this.productLangUrl + '/ByTypeId/' + typeId);
+  }
 }
