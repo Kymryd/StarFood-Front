@@ -18,7 +18,7 @@
         <ul class="social">
             <li *ngIf="order.product.productTypeId!=9"><a class="pointerHand" data-tip="Quick View" (click)="getSelectedProduct(order.product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a></li>
             <li *ngIf="order.product.productTypeId!=9"><a class="pointerHand" data-tip="Add to Cart" (click)="addToCart(order)"><i class="fa fa-shopping-cart"></i></a></li>
-          <li *ngIf="order.product.productTypeId==9"><a class="pointerHand" data-tip="Add to Cart" (click)="getSelectedProduct(order.product)" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart"></i></a></li>
+          <li *ngIf="order.product.productTypeId==9"><a class="pointerHand" data-tip="Add to Cart" (click)="getSelectedProduct(order.product); addToCart(order)" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart"></i></a></li>
           </ul>
 
       </div>
@@ -41,19 +41,19 @@
 
             <!-- Modal body -->
             <div class="modal-body" *ngIf="selectedProduct.productTypeId==9">
-              <h3>Choose your side</h3>
-              <div class="form-check-inline" *ngFor="let side of productOrders">
-                <label class="form-check-label" *ngIf="side.product.productTypeId==2">
+              <h3>Choose your side {{sideProducts[0].productId}}</h3>
+              <div class="form-check-inline" *ngFor="let side of sideProducts">
+                <label class="form-check-label">
                   <input type="radio" class="form-check-input" name="optradio">
-                  <img class="pic-1" src="../../../assets/images/products/{{side.product.productId}}.png" alt="{{side.product.productLangsByProductId[0].productLangShortDescription}}" width="100px" height="100px">
+                  <img class="pic-1" src="../../../assets/images/products/{{side.productId}}.png" alt="{{side.productLangsByProductId[0].productLangShortDescription}}" width="100px" height="100px">
                 </label>
               </div>
               <hr>
               <h3>Choose your drink</h3>
-              <div class="form-check-inline" *ngFor="let drink of productOrders">
-                <label class="form-check-label" *ngIf="drink.product.productTypeId==3">
+              <div class="form-check-inline" *ngFor="let drink of drinkProducts">
+                <label class="form-check-label" *ngIf="drink.productTypeId==3">
                   <input type="radio" class="form-check-input" name="optradio2">
-                  <img class="pic-1" src="../../../assets/images/products/{{drink.product.productId}}.png" alt="{{drink.product.productLangsByProductId[0].productLangShortDescription}}" width="100px" height="100px">
+                  <img class="pic-1" src="../../../assets/images/products/{{drink.productId}}.png" alt="{{drink.productLangsByProductId[0].productLangShortDescription}}" width="100px" height="100px">
                 </label>
               </div>
             </div>

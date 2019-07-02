@@ -24,6 +24,8 @@ export class ProductComponent implements OnInit {
   lang = 1;
   productLangs: ProductLang[];
   productsByProductType: Product[];
+  sideProducts: Product[];
+  drinkProducts: Product[];
 
 
   @Input()
@@ -39,6 +41,8 @@ export class ProductComponent implements OnInit {
     this.productOrders = [];
     // this.loadProducts();
     this.loadProductsbyCategory(this.selectedCategory);
+    this.loadSideProducts();
+    this.loadDrinkProducts();
     this.loadOrders();
     // this.loadProductsLang();
 
@@ -138,6 +142,18 @@ export class ProductComponent implements OnInit {
     this.ecommerceService.getProductsByType(typeId)
       .subscribe(data => {
         this.productsByProductType = data;
+      });
+  }
+  private loadSideProducts() {
+    this.ecommerceService.getProductsByType(2)
+      .subscribe(data => {
+        this.sideProducts = data;
+      });
+  }
+  private loadDrinkProducts() {
+    this.ecommerceService.getProductsByType(3)
+      .subscribe(data => {
+        this.drinkProducts = data;
       });
   }
 }

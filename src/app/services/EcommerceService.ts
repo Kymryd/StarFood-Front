@@ -72,6 +72,6 @@ export class EcommerceService {
   }
 
   getProductsByType(typeId: number) {
-    return this.http.get<Product[]>(this.productLangUrl + '/ByTypeId/' + typeId);
+    return this.http.get<Product[]>(this.productUrl + '/ByTypeId/' + typeId);
   }
 }
