@@ -33,6 +33,11 @@ export class EcommerceComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.orderFinished = false;
+      this.productsC.reset();
+      this.shoppingCartC.reset();
+      this.ordersC.paid = false;
+      this.displayCategories = true;
     }
 
     finishOrder(orderFinished: boolean) {
