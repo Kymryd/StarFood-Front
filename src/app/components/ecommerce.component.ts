@@ -43,7 +43,7 @@ export class EcommerceComponent implements OnInit {
     finishOrder(orderFinished: boolean) {
         this.orderFinished = orderFinished;
     }
-    showCategories(showCat: boolean) {
+    showCategories() {
       this.displayCategories = !this.displayCategories;
     }
 

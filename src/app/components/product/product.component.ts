@@ -156,4 +156,8 @@ export class ProductComponent implements OnInit {
         this.drinkProducts = data;
       });
   }
+
+  banane(side: Product) {
+    this.addToCart(new ProductOrder(side, 1));
+  }
 }

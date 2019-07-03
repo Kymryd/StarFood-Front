@@ -41,31 +41,74 @@
 
             <!-- Modal body -->
             <div class="modal-body" *ngIf="selectedProduct.productTypeId==9">
-              <h3>Choose your side {{sideProducts[0].productId}}</h3>
+              <h3>Choose your side</h3>
               <div class="form-check-inline" *ngFor="let side of sideProducts">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradio">
-                  <img class="pic-1" src="../../../assets/images/products/{{side.productId}}.png" alt="{{side.productLangsByProductId[0].productLangShortDescription}}" width="100px" height="100px">
-                </label>
+                <div class="product-image6">
+                  <a (click)="banane(side)" data-toggle="modal" data-target="#mamadoul"><img class="pic-1" src="../../../assets/images/products/{{side.productId}}.png" alt="{{side.productId}}"></a>
+                </div>
+                <div class="product-content">
+                  <h3 class="title"><a>{{side.productLangsByProductId[0].productLangShortDescription}}</a></h3>
+                  <div class="price">{{side.productPrice}}€</div>
+                </div>
               </div>
-              <hr>
-              <h3>Choose your drink</h3>
-              <div class="form-check-inline" *ngFor="let drink of drinkProducts">
-                <label class="form-check-label" *ngIf="drink.productTypeId==3">
-                  <input type="radio" class="form-check-input" name="optradio2">
-                  <img class="pic-1" src="../../../assets/images/products/{{drink.productId}}.png" alt="{{drink.productLangsByProductId[0].productLangShortDescription}}" width="100px" height="100px">
-                </label>
-              </div>
-            </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer" *ngIf="selectedProduct.productTypeId==9">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addToCart()">Add to cart</button>
+
+              <!-- The Modal Menus -->
+              <div class="modal fade" id="mamadoul">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Chose your drink</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                      <h3>Choose your drink</h3>
+                      <div class="form-check-inline" *ngFor="let drink of drinkProducts">
+                        <div *ngIf="drink.productTypeId==3">
+                        <div class="product-image6">
+                          <a data-dismiss="modal" (click)="banane(drink)"><img class="pic-1" src="../../../assets/images/products/{{drink.productId}}.png" alt="{{drink.productId}}"></a>
+                        </div>
+                        <div class="product-content">
+                          <h3 class="title"><a>{{drink.productLangsByProductId[0].productLangShortDescription}}</a></h3>
+                          <div class="price">{{drink.productPrice}}€</div>
+                        </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
